@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tým | OniCord</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #d1d5db; font-family: 'Inter', sans-serif; margin: 0; }
+        .container-custom { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        .staff-card {
+            background: #0d1117;
+            border: 1px solid #1e293b;
+            padding: 40px 20px;
+            border-radius: 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 450px;
+        }
+        .staff-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-10px);
+            background: #111827;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+        .skin-img {
+            height: 240px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+            transition: 0.3s;
+        }
+        .staff-card:hover .skin-img { transform: scale(1.05); }
+
+        .nav-link { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/90 border-b border-white/5 backdrop-blur-lg">
+        <div class="container-custom py-6 flex justify-between items-center">
+            <div class="text-2xl font-black uppercase text-white tracking-tighter">Oni<span class="text-blue-500">Cord</span></div>
+            <div class="flex gap-12 items-center">
+                <a href="/" class="nav-link text-gray-400 hover:text-white">Domov</a>
+                <a href="/politika" class="nav-link text-gray-400 hover:text-white">Politika</a>
+                <a href="/ekonomika" class="nav-link text-gray-400 hover:text-white">Ekonomika</a>
+                <a href="/tym" class="nav-link text-blue-500">Tým</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-56 pb-20 border-b border-white/5">
+        <div class="container-custom text-center md:text-left">
+            <h1 class="text-6xl font-black text-white uppercase tracking-tighter mb-4">Vedení <span class="text-blue-600 italic text-5xl">Projektu</span></h1>
+            <p class="text-gray-500 text-lg max-w-2xl leading-relaxed">
+                Tým zodpovědný za správu, stabilitu a hyperrealistický rozvoj světa OniCord.
+            </p>
+        </div>
+    </header>
+
+    <main class="py-24">
+        <div class="container-custom">
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="staff-card">
+                    <img src="https://brambora100.github.io/onicord.pro/files/skins/kvalita.png" alt="Majitel" class="skin-img">
+                    <div>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Eduard</h3>
+                        <p class="text-blue-600 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-blue-600/10 py-2 rounded-full border border-blue-600/20">Majitel</p>
+                    </div>
+                </div>
+
+                <div class="staff-card">
+                    <img src="https://brambora100.github.io/onicord.pro/files/skins/andrewolf.png" alt="Co-Owner" class="skin-img">
+                    <div>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Ondřej</h3>
+                        <p class="text-blue-400 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-blue-400/10 py-2 rounded-full border border-blue-400/20">Co-Owner</p>
+                    </div>
+                </div>
+
+                <div class="staff-card">
+                    <img src="https://brambora100.github.io/onicord.pro/files/skins/shimoyoda.png" alt="Admin" class="skin-img">
+                    <div>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Šimon</h3>
+                        <p class="text-cyan-500 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-cyan-500/10 py-2 rounded-full border border-cyan-500/20">Admin</p>
+                    </div>
+                </div>
+
+                <div class="staff-card">
+                    <img src="https://brambora100.github.io/onicord.pro/files/skins/not_copy.png" alt="Admin" class="skin-img">
+                    <div>
+                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Hori</h3>
+                        <p class="text-cyan-500 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-cyan-500/10 py-2 rounded-full border border-cyan-500/20">Admin</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-20 border-t border-white/5 text-center">
+        <div class="container-custom">
+            <p class="text-gray-700 text-[9px] uppercase tracking-[0.6em] font-black">OniCord Administrative Team // 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>
