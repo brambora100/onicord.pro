@@ -8,36 +8,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { background-color: #050505; color: #d1d5db; font-family: 'Inter', sans-serif; margin: 0; }
-        .container-custom { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        .econ-card {
-            background: #0d1117;
+        /* Profesionální Glass-Card */
+        .nav-card {
+            background: linear-gradient(145deg, #0d1117 0%, #07080a 100%);
             border: 1px solid #1e293b;
-            padding: 40px;
-            border-radius: 24px;
-            transition: 0.3s;
+            padding: 60px 40px;
+            border-radius: 32px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-decoration: none;
         }
-        .econ-card:hover { border-color: #22c55e; background: #0a1510; }
+        .nav-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -12px rgba(59, 130, 246, 0.2);
+        }
 
-        .currency-symbol { color: #22c55e; font-weight: 900; }
-        .nav-link { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-        
         .btn-glow {
             background-color: #3b82f6;
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
             transition: 0.3s;
         }
+        .btn-glow:hover {
+            background-color: #2563eb;
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.6);
+            transform: scale(1.02);
+        }
+
+        .nav-link { font-size: 10px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; transition: 0.3s; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-50 bg-black/90 border-b border-white/5 backdrop-blur-lg">
+        <nav class="fixed top-0 w-full z-50 bg-black/90 border-b border-white/5 backdrop-blur-lg">
         <div class="container-custom py-6 flex justify-between items-center">
             <div class="text-2xl font-black uppercase text-white tracking-tighter">Oni<span class="text-blue-500">Cord</span></div>
             <div class="flex gap-12 items-center">
-                <a href="/onicord.pro/" class="nav-link text-gray-400 hover:text-white">Domov</a>
+                <a href="/onicord.pro/" class="nav-link text-blue-400 hover:text-white">Domov</a>
                 <a href="/onicord.pro/politika" class="nav-link text-gray-400 hover:text-white">Politika</a>
-                <a href="/onicord.pro/ekonomika" class="nav-link text-blue-400 hover:text-white">Ekonomika</a>
+                <a href="/onicord.pro/ekonomika" class="nav-link text-gray-400 hover:text-white">Ekonomika</a>
                 <a href="/onicord.pro/tym" class="nav-link text-gray-400">Tým</a>
             </div>
         </div>
@@ -47,14 +61,13 @@
         <div class="container-custom py-6 flex justify-between items-center">
             <div class="text-2xl font-black uppercase text-white tracking-tighter">Oni<span class="text-blue-500">Cord</span></div>
             <div class="flex gap-12 items-center">
-                <a href="/" class="nav-link text-gray-400 hover:text-white">Domov</a>
-                <a href="/politika" class="nav-link text-blue-400 hover:text-white">Politika</a>
-                <a href="/ekonomika" class="nav-link text-gray-400 hover:text-white">Ekonomika</a>
-                <a href="/tym" class="nav-link text-gray-400">Tým</a>
+                <a href="/onicord.pro/" class="nav-link text-blue-400 hover:text-white">Domov</a>
+                <a href="/onicord.pro/politika" class="nav-link text-gray-400 hover:text-white">Politika</a>
+                <a href="/onicord.pro/ekonomika" class="nav-link text-gray-400 hover:text-white">Ekonomika</a>
+                <a href="/onicord.pro/tym" class="nav-link text-gray-400">Tým</a>
             </div>
         </div>
     </nav>
-
     <header class="pt-64 pb-40 text-center relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/5 blur-[120px] rounded-full -z-10"></div>
         
@@ -106,8 +119,8 @@
             <div class="text-xl font-black text-white uppercase tracking-tighter">Oni<span class="text-blue-600">Cord</span></div>
             <div class="text-[9px] text-gray-700 font-bold uppercase tracking-[1em]">Built for the elite players</div>
             <div class="flex gap-8 text-[10px] font-black uppercase text-gray-500 tracking-widest">
-                <a href="#" class="hover:text-blue-500 transition">Instagram</a>
-                <a href="#" class="hover:text-blue-500 transition">TikTok</a>
+                <a href="https://www.instagram.com/onicord.pro" class="hover:text-blue-500 transition">Instagram</a>
+                <a href="https://www.tiktok.com/@onicord.pro" class="hover:text-blue-500 transition">TikTok</a>
             </div>
         </div>
     </footer>
