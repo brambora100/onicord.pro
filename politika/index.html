@@ -3,40 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tým | OniCord</title>
+    <title>Ekonomika | OniCord</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { background-color: #050505; color: #d1d5db; font-family: 'Inter', sans-serif; margin: 0; }
         .container-custom { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
-        .staff-card {
+        .econ-card {
             background: #0d1117;
             border: 1px solid #1e293b;
-            padding: 40px 20px;
-            border-radius: 32px;
-            text-align: center;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 450px;
-        }
-        .staff-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-10px);
-            background: #111827;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
-        }
-        .skin-img {
-            height: 240px;
-            margin: 0 auto 20px;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+            padding: 40px;
+            border-radius: 24px;
             transition: 0.3s;
         }
-        .staff-card:hover .skin-img { transform: scale(1.05); }
+        .econ-card:hover { border-color: #22c55e; background: #0a1510; }
 
+        .currency-symbol { color: #22c55e; font-weight: 900; }
         .nav-link { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        
+        .btn-glow {
+            background-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            transition: 0.3s;
+        }
     </style>
 </head>
 <body>
@@ -46,66 +36,65 @@
             <div class="text-2xl font-black uppercase text-white tracking-tighter">Oni<span class="text-blue-500">Cord</span></div>
             <div class="flex gap-12 items-center">
                 <a href="/" class="nav-link text-gray-400 hover:text-white">Domov</a>
-                <a href="/politika" class="nav-link text-gray-400 hover:text-white">Politika</a>
+                <a href="/politika" class="nav-link text-blue-600 hover:text-white">Politika</a>
                 <a href="/ekonomika" class="nav-link text-gray-400 hover:text-white">Ekonomika</a>
-                <a href="/tym" class="nav-link text-blue-500">Tým</a>
+                <a href="/tym" class="nav-link text-gray-400">Tým</a>
             </div>
         </div>
     </nav>
 
     <header class="pt-56 pb-20 border-b border-white/5">
-        <div class="container-custom text-center md:text-left">
-            <h1 class="text-6xl font-black text-white uppercase tracking-tighter mb-4">Vedení <span class="text-blue-600 italic text-5xl">Projektu</span></h1>
-            <p class="text-gray-500 text-lg max-w-2xl leading-relaxed">
-                Tým zodpovědný za správu, stabilitu a hyperrealistický rozvoj světa OniCord.
+        <div class="container-custom">
+            <h1 class="text-6xl font-black text-white uppercase tracking-tighter mb-4 text-center md:text-left">Globální <span class="text-green-500 italic text-5xl">Finance</span></h1>
+            <p class="text-gray-500 text-lg max-w-2xl leading-relaxed text-center md:text-left">
+                Ekonomický systém OniCordu stojí na stabilitě Eura a volném trhu. Každý pohyb na burze ovlivňuje sílu tvého státu.
             </p>
         </div>
     </header>
 
     <main class="py-24">
         <div class="container-custom">
-            <div class="grid md:grid-cols-3 gap-8">
-                
-                <div class="staff-card">
-                    <img src="https://crafatar.com/renders/body/Ondra?overlay" alt="Majitel" class="skin-img">
-                    <div>
-                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Ondra</h3>
-                        <p class="text-blue-600 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-blue-600/10 py-2 rounded-full border border-blue-600/20">Majitel</p>
-                    </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-24">
+                <div class="econ-card">
+                    <div class="text-3xl mb-6">📈</div>
+                    <h3 class="text-white font-black text-xl mb-4 uppercase tracking-tight">#zprávy-rozvoj</h3>
+                    <p class="text-gray-400 text-sm leading-loose">
+                        Sleduj investiční projekty a technologický pokrok. Zde se dozvíš, kam plynou státní dotace a jak se vyvíjí infrastruktura.
+                    </p>
                 </div>
-
-                <div class="staff-card">
-                    <img src="https://crafatar.com/renders/body/Ondra?overlay" alt="Co-Owner" class="skin-img">
-                    <div>
-                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Ondra</h3>
-                        <p class="text-blue-400 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-blue-400/10 py-2 rounded-full border border-blue-400/20">Co-Owner</p>
-                    </div>
+                <div class="econ-card">
+                    <div class="text-3xl mb-6">💸</div>
+                    <h3 class="text-white font-black text-xl mb-4 uppercase tracking-tight">#světový-trh</h3>
+                    <p class="text-gray-400 text-sm leading-loose">
+                        Místo pro obchodování se surovinami a akciemi. Nakupuj levně, prodávej draho a ovládni ekonomický žebříček serveru.
+                    </p>
                 </div>
-
-                <div class="staff-card">
-                    <img src="https://crafatar.com/renders/body/ShimoYoda?overlay" alt="Admin" class="skin-img">
-                    <div>
-                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">ShimoYoda</h3>
-                        <p class="text-cyan-500 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-cyan-500/10 py-2 rounded-full border border-cyan-500/20">Admin</p>
-                    </div>
-                </div>
-
-                <div class="staff-card">
-                    <img src="https://crafatar.com/renders/body/hori?overlay" alt="Admin" class="skin-img">
-                    <div>
-                        <h3 class="text-white font-black text-2xl uppercase tracking-tighter">Hori</h3>
-                        <p class="text-cyan-500 font-bold text-[10px] uppercase mt-3 tracking-[0.3em] bg-cyan-500/10 py-2 rounded-full border border-cyan-500/20">Admin</p>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="bg-zinc-900/50 border border-white/5 p-12 rounded-[40px]">
+                <h2 class="text-2xl font-black text-white uppercase mb-10 text-center italic">Základní měna: <span class="text-green-500">EURO (€)</span></h2>
+                <div class="grid md:grid-cols-3 gap-10 text-center">
+                    <div>
+                        <div class="text-4xl font-black text-white mb-2">/bal</div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Stav tvého konta</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-white mb-2">/pay</div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Převod financí</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-white mb-2">/ah</div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Globální aukce</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
     <footer class="py-20 border-t border-white/5 text-center">
-        <div class="container-custom">
-            <p class="text-gray-700 text-[9px] uppercase tracking-[0.6em] font-black">OniCord Administrative Team // 2026</p>
-        </div>
+        <p class="text-gray-700 text-[9px] uppercase tracking-[0.6em] font-black text-center">OniCord Economy System // 2026</p>
     </footer>
 
 </body>
