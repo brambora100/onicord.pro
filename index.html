@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OniCord | Oficiální Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #d1d5db; font-family: 'Inter', sans-serif; margin: 0; }
+        .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Profesionální Glass-Card */
+        .nav-card {
+            background: linear-gradient(145deg, #0d1117 0%, #07080a 100%);
+            border: 1px solid #1e293b;
+            padding: 60px 40px;
+            border-radius: 32px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -12px rgba(59, 130, 246, 0.2);
+        }
+        .nav-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent);
+            opacity: 0; transition: 0.5s;
+        }
+        .nav-card:hover::before { opacity: 1; }
+
+        .btn-glow {
+            background-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            transition: 0.3s;
+        }
+        .btn-glow:hover {
+            background-color: #2563eb;
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.6);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/90 border-b border-white/5 backdrop-blur-lg">
+        <div class="container-custom py-6 flex justify-between items-center">
+            <div class="text-2xl font-black uppercase text-white tracking-tighter">Oni<span class="text-blue-500">Cord</span></div>
+            <div class="hidden md:flex gap-12 items-center font-bold text-[10px] uppercase tracking-[0.3em] text-gray-500">
+                <a href="/" class="text-blue-500">Domov</a>
+                <a href="/politika" class="hover:text-white transition">Politika</a>
+                <a href="/ekonomika" class="hover:text-white transition">Ekonomika</a>
+                <a href="/tym" class="hover:text-white transition">Tým</a>
+            </div>
+            <a href="https://discord.gg/9bACX5tANm" target="_blank" class="btn-glow text-white px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest">Discord</a>
+        </div>
+    </nav>
+
+    <header class="pt-64 pb-40 text-center relative">
+        <div class="container-custom">
+            <div class="inline-block px-4 py-1.5 border border-blue-500/30 rounded-full bg-blue-500/5 text-blue-400 text-[10px] font-black uppercase tracking-[0.4em] mb-10">
+                Hyperrealistický Projekt 2026
+            </div>
+            <h1 class="text-7xl md:text-[120px] font-black text-white uppercase leading-none tracking-tighter mb-10">
+                ONI<span class="text-blue-600">CORD</span>
+            </h1>
+            <p class="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto mb-16 font-light leading-relaxed italic">
+                "Kde se ambice setkávají s realitou."
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 font-mono">
+                <div class="text-sm text-gray-500 uppercase tracking-widest">Server Address:</div>
+                <div class="text-2xl text-white font-bold border-b-2 border-blue-600 pb-1">mc.onicord.pro</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="pb-40">
+        <div class="container-custom">
+            <div class="grid md:grid-cols-3 gap-10">
+                
+                <a href="/politika" class="nav-card">
+                    <div class="text-blue-500 text-5xl mb-10 flex justify-center">🏛️</div>
+                    <h3 class="text-white font-black text-3xl uppercase mb-6 tracking-tighter">Politika</h3>
+                    <p class="text-gray-500 text-sm leading-loose">Správa států, tvorba ústav a diplomatické souboje v mezinárodním měřítku.</p>
+                </a>
+
+                <a href="/ekonomika" class="nav-card">
+                    <div class="text-blue-500 text-5xl mb-10 flex justify-center">💶</div>
+                    <h3 class="text-white font-black text-3xl uppercase mb-6 tracking-tighter">Ekonomika</h3>
+                    <p class="text-gray-500 text-sm leading-loose">Trh založený na Eurech, boj s inflací a správa státních rozpočtů.</p>
+                </a>
+
+                <a href="/tym" class="nav-card">
+                    <div class="text-blue-500 text-5xl mb-10 flex justify-center">👥</div>
+                    <h3 class="text-white font-black text-3xl uppercase mb-6 tracking-tighter">Vedení</h3>
+                    <p class="text-gray-500 text-sm leading-loose">Lidé stojící za vizí OniCordu. Majitelé, správci a admin tým.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 bg-[#030303]">
+        <div class="container-custom flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-xl font-black text-white uppercase tracking-tighter">Oni<span class="text-blue-600">Cord</span></div>
+            <div class="text-[9px] text-gray-700 font-bold uppercase tracking-[1em]">Built for the elite players</div>
+            <div class="flex gap-8 text-[10px] font-black uppercase text-gray-500 tracking-widest">
+                <a href="#" class="hover:text-blue-500 transition">Instagram</a>
+                <a href="#" class="hover:text-blue-500 transition">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
