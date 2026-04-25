@@ -3,125 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OniCord Admin | Ban Panel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>OniCord | Pro Player Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0b0e14;
-            --sidebar-bg: #151921;
-            --card-bg: #151921;
-            --accent: #7289da;
-            --danger: #ff4757;
-            --input-bg: #1e252f;
-            --border: #2f3542;
+            --bg: #0f1219;
+            --side: #161b26;
+            --card: #1c222d;
+            --accent: #5865f2;
+            --danger: #ed4245;
+            --warning: #fee75c;
+            --success: #3ba55c;
             --text: #ffffff;
+            --text-muted: #949ba4;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg-body); color: var(--text); display: flex; min-height: 100vh; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar */
-        .sidebar { width: 320px; background: var(--sidebar-bg); padding: 30px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 15px; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-bottom: 20px; letter-spacing: 1px; }
-
-        label { font-size: 0.8rem; color: #a4b0be; display: block; margin-bottom: 5px; }
-        input, select, textarea { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; color: white; margin-bottom: 10px; }
+        /* Sidebar - Formulář */
+        .sidebar { width: 360px; background: var(--side); padding: 30px; border-right: 1px solid #232937; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         
-        .clip-row { display: flex; gap: 5px; margin-bottom: 5px; }
-        .btn-small { background: var(--border); border: none; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.7rem; }
-        
-        .btn-execute { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+        input, select, textarea { 
+            background: #232937; border: 1px solid #2f374a; border-radius: 10px; padding: 12px; 
+            color: white; font-family: inherit; transition: 0.2s;
+        }
+        input:focus { border-color: var(--accent); outline: none; }
 
-        /* Main Content */
-        .main { flex-grow: 1; padding: 40px; }
-        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: var(--card-bg); padding: 25px; border-radius: 12px; border-bottom: 3px solid var(--accent); position: relative; }
-        .stat-card.active-card { border-bottom-color: var(--danger); }
-        .stat-card span { color: #a4b0be; font-size: 0.9rem; }
-        .stat-card strong { display: block; font-size: 2rem; margin-top: 5px; }
+        .btn-save { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-save:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4); }
 
-        /* Table */
-        .table-container { background: var(--card-bg); border-radius: 15px; overflow: hidden; }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #1e252f; padding: 15px; text-align: left; color: #a4b0be; font-size: 0.8rem; text-transform: uppercase; }
-        td { padding: 20px 15px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        /* Main Area */
+        .main { flex-grow: 1; display: flex; flex-direction: column; padding: 30px; overflow: hidden; }
         
-        .badge-time { background: rgba(255, 71, 87, 0.1); color: var(--danger); padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; }
-        .clip-link { color: #ff9f43; text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 5px; }
-        .note-text { font-size: 0.8rem; color: #a4b0be; font-style: italic; max-width: 200px; }
-        .btn-delete { background: transparent; border: 1px solid var(--danger); color: var(--danger); padding: 6px 12px; border-radius: 6px; cursor: pointer; transition: 0.3s; }
-        .btn-delete:hover { background: var(--danger); color: white; }
+        /* Horní lišta s filtrem */
+        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 20px; }
+        .search-wrapper { flex-grow: 1; position: relative; }
+        .search-input { width: 100%; background: var(--side); border: 1px solid #2f374a; padding: 15px 20px; border-radius: 15px; color: white; font-size: 1rem; }
+
+        .stats-mini { display: flex; gap: 15px; }
+        .stat-box { background: var(--side); padding: 10px 20px; border-radius: 12px; border-bottom: 2px solid var(--accent); }
+        .stat-box span { font-size: 0.7rem; color: var(--text-muted); display: block; }
+        .stat-box strong { font-size: 1.2rem; }
+
+        /* Tabulka a karty */
+        .content-scroll { overflow-y: auto; flex-grow: 1; padding-right: 10px; }
+        .ban-table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
+        .ban-table th { text-align: left; padding: 0 20px; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
+        
+        .ban-row { background: var(--card); transition: 0.2s; }
+        .ban-row:hover { background: #252c39; transform: scale(1.005); }
+        .ban-row td { padding: 20px; border-top: 1px solid #2f374a; border-bottom: 1px solid #2f374a; }
+        .ban-row td:first-child { border-left: 1px solid #2f374a; border-radius: 15px 0 0 15px; }
+        .ban-row td:last-child { border-right: 1px solid #2f374a; border-radius: 0 15px 15px 0; }
+
+        /* Badge styly */
+        .badge { padding: 5px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; }
+        .type-BAN { background: rgba(237, 66, 69, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .type-WARN { background: rgba(254, 231, 92, 0.1); color: var(--warning); border: 1px solid var(--warning); }
+        .type-MUTE { background: rgba(88, 101, 242, 0.1); color: var(--accent); border: 1px solid var(--accent); }
+
+        .clip-link { color: #5865f2; text-decoration: none; font-size: 0.8rem; display: block; }
+        .action-btns { display: flex; gap: 10px; }
+        .btn-icon { background: none; border: 1px solid #2f374a; color: white; padding: 8px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .btn-icon:hover { background: #2f374a; }
+
+        #cancelEdit { display: none; background: #2f374a; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
-        <div class="logo">ONICORD ADMIN</div>
+        <div class="logo">🛡️ ONICORD</div>
         
-        <div>
-            <label>Hráč</label>
-            <input type="text" id="pName" placeholder="Nick hráče">
+        <input type="hidden" id="editId">
+        
+        <div class="form-group">
+            <label>Jméno hráče</label>
+            <input type="text" id="pName" placeholder="Např. ZyloxxCZ">
         </div>
 
-        <div>
+        <div class="form-group">
+            <label>Typ akce</label>
+            <select id="pType">
+                <option value="BAN">BAN</option>
+                <option value="MUTE">MUTE</option>
+                <option value="WARN">NAPOMENUTÍ (WARN)</option>
+                <option value="JAIL">JAIL</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label>Důvod</label>
-            <input type="text" id="pReason" placeholder="Cheating, Griefing...">
+            <input type="text" id="pReason" placeholder="Killaura, vulgarita...">
         </div>
 
-        <div>
-            <label>Vlastní délka banu (Dny)</label>
-            <input type="number" id="pDays" value="7">
-            <small style="color: #636e72; font-size: 0.7rem;">0 = Permanentní</small>
+        <div class="form-group">
+            <label>Délka (Dny) | 0 = Perm</label>
+            <input type="number" id="pDays" value="0">
         </div>
 
-        <div>
-            <label>Důkazy (Medal / Odkazy)</label>
-            <div id="clipList">
-                <input type="text" class="clip-url" placeholder="https://medal.tv/...">
-            </div>
-            <button class="btn-small" onclick="addClipField()">+ DALŠÍ ODKAZ</button>
+        <div class="form-group">
+            <label>Důkazy (Medal links - každý na nový řádek)</label>
+            <textarea id="pClips" rows="3" placeholder="https://medal.tv/..."></textarea>
         </div>
 
-        <div>
-            <label>Poznámka</label>
-            <textarea id="pNote" rows="2" placeholder="Interní poznámka..."></textarea>
+        <div class="form-group">
+            <label>Interní poznámka</label>
+            <textarea id="pNote" rows="2" placeholder="Admin poznámka..."></textarea>
         </div>
 
-        <button class="btn-execute" id="saveBtn">VYKONAT BAN</button>
+        <button class="btn-save" id="mainBtn">ULOŽIT ZÁZNAM</button>
+        <button id="cancelEdit" onclick="resetForm()">ZRUŠIT ÚPRAVU</button>
     </aside>
 
     <main class="main">
-        <div class="stats">
-            <div class="stat-card">
-                <span>Celkem banů</span>
-                <strong id="totalBans">0</strong>
+        <div class="header-actions">
+            <div class="search-wrapper">
+                <input type="text" id="searchBar" class="search-input" placeholder="🔍 Hledat hráče (např. napiš 'Zyloxx')...">
             </div>
-            <div class="stat-card active-card">
-                <span>Aktivní tresty</span>
-                <strong id="activeBans">0</strong>
+            <div class="stats-mini">
+                <div class="stat-box"><span>Celkem záznamů</span><strong id="statTotal">0</strong></div>
+                <div class="stat-box"><span>Aktivní</span><strong id="statActive">0</strong></div>
             </div>
         </div>
 
-        <div class="table-container">
-            <table>
+        <div class="content-scroll">
+            <table class="ban-table">
                 <thead>
                     <tr>
                         <th>Hráč</th>
-                        <th>Důvod</th>
+                        <th>Typ</th>
+                        <th>Důvod & Poznámka</th>
                         <th>Důkazy</th>
-                        <th>Poznámka</th>
-                        <th>Vyprší za</th>
+                        <th>Status / Vyprší</th>
                         <th>Akce</th>
                     </tr>
                 </thead>
-                <tbody id="banTableBody"></tbody>
+                <tbody id="dataTable">
+                    </tbody>
             </table>
         </div>
     </main>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } 
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, query, orderBy } 
         from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -135,77 +165,106 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const colRef = collection(db, "bans");
 
-        window.addClipField = () => {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'clip-url';
-            input.placeholder = 'Další odkaz...';
-            document.getElementById('clipList').appendChild(input);
-        }
+        let allRecords = [];
 
-        document.getElementById('saveBtn').onclick = async () => {
-            const name = document.getElementById('pName').value;
-            const reason = document.getElementById('pReason').value;
-            const days = parseInt(document.getElementById('pDays').value);
-            const note = document.getElementById('pNote').value;
-            const clips = Array.from(document.querySelectorAll('.clip-url')).map(i => i.value).filter(v => v !== "");
+        // Filtrování v reálném čase
+        document.getElementById('searchBar').addEventListener('input', (e) => {
+            renderTable(e.target.value.toLowerCase());
+        });
 
-            if(!name || !reason) return alert("Vyplň nick a důvod!");
-
-            const expires = days === 0 ? 0 : Date.now() + (days * 24 * 60 * 60 * 1000);
-
-            await addDoc(collection(db, "bans"), {
-                player: name,
-                reason: reason,
-                clips: clips,
-                note: note,
-                expires: expires,
+        // Uložení / Update
+        document.getElementById('mainBtn').onclick = async () => {
+            const id = document.getElementById('editId').value;
+            const data = {
+                player: document.getElementById('pName').value,
+                type: document.getElementById('pType').value,
+                reason: document.getElementById('pReason').value,
+                days: parseInt(document.getElementById('pDays').value),
+                clips: document.getElementById('pClips').value.split('\n').filter(l => l.trim() !== ""),
+                note: document.getElementById('pNote').value,
                 created: Date.now()
-            });
+            };
+            data.expires = data.days === 0 ? 0 : Date.now() + (data.days * 86400000);
 
+            if(!data.player || !data.reason) return alert("Vyplň jméno a důvod!");
+
+            if(id) await updateDoc(doc(db, "bans", id), data);
+            else await addDoc(colRef, data);
+            
             location.reload();
         };
 
-        async function load() {
-            const q = query(collection(db, "bans"), orderBy("created", "desc"));
-            const snap = await getDocs(q);
-            const tbody = document.getElementById('banTableBody');
+        async function loadData() {
+            const snap = await getDocs(query(colRef, orderBy("created", "desc")));
+            allRecords = [];
+            snap.forEach(d => allRecords.push({id: d.id, ...d.data()}));
+            renderTable();
+        }
+
+        function renderTable(filter = "") {
+            const tbody = document.getElementById('dataTable');
+            tbody.innerHTML = "";
             const now = Date.now();
-            let total = 0, active = 0;
+            let activeCount = 0;
 
-            snap.forEach(sDoc => {
-                const d = sDoc.data();
-                total++;
-                const isPerm = d.expires === 0;
-                const isExpired = !isPerm && now > d.expires;
-                if(!isExpired) active++;
+            const filtered = allRecords.filter(r => r.player.toLowerCase().includes(filter));
 
-                const timeText = isPerm ? 'Permanentní' : (isExpired ? 'Vypršelo' : Math.ceil((d.expires - now) / (1000*60*60*24)) + ' dní');
-                const clipsHtml = d.clips.map((c, i) => `<a href="${c}" target="_blank" class="clip-link">🎬 Clip #${i+1}</a>`).join('');
+            filtered.forEach(r => {
+                const isExpired = r.expires !== 0 && now > r.expires;
+                if(!isExpired) activeCount++;
+
+                const timeInfo = r.expires === 0 ? "Permanentní" : (isExpired ? "Vypršelo" : Math.ceil((r.expires-now)/86400000) + " d");
 
                 tbody.innerHTML += `
-                    <tr>
-                        <td><strong>${d.player}</strong></td>
-                        <td>${d.reason}</td>
-                        <td>${clipsHtml || '-'}</td>
-                        <td class="note-text">${d.note || '-'}</td>
-                        <td><span class="badge-time">${timeText}</span></td>
-                        <td><button class="btn-delete" onclick="del('${sDoc.id}')">Smazat</button></td>
+                    <tr class="ban-row">
+                        <td><strong>${r.player}</strong></td>
+                        <td><span class="badge type-${r.type}">${r.type}</span></td>
+                        <td>
+                            <div>${r.reason}</div>
+                            <small style="color:var(--text-muted)">${r.note || ''}</small>
+                        </td>
+                        <td>${r.clips.map((c, i) => `<a href="${c}" target="_blank" class="clip-link">Odkaz #${i+1}</a>`).join('')}</td>
+                        <td><span style="color:${isExpired ? 'gray' : 'inherit'}">${timeInfo}</span></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn-icon" onclick="editMode('${r.id}')">✏️</button>
+                                <button class="btn-icon" onclick="deleteRec('${r.id}')">🗑️</button>
+                            </div>
+                        </td>
                     </tr>
                 `;
             });
-            document.getElementById('totalBans').innerText = total;
-            document.getElementById('activeBans').innerText = active;
+
+            document.getElementById('statTotal').innerText = allRecords.length;
+            document.getElementById('statActive').innerText = activeCount;
         }
 
-        window.del = async (id) => {
-            if(confirm("Odstranit tento ban?")) {
+        window.editMode = (id) => {
+            const r = allRecords.find(x => x.id === id);
+            document.getElementById('editId').value = id;
+            document.getElementById('pName').value = r.player;
+            document.getElementById('pType').value = r.type;
+            document.getElementById('pReason').value = r.reason;
+            document.getElementById('pDays').value = r.days;
+            document.getElementById('pClips').value = r.clips.join('\n');
+            document.getElementById('pNote').value = r.note;
+            
+            document.getElementById('mainBtn').innerText = "AKTUALIZOVAT";
+            document.getElementById('cancelEdit').style.display = "block";
+        };
+
+        window.deleteRec = async (id) => {
+            if(confirm("Opravdu smazat?")) {
                 await deleteDoc(doc(db, "bans", id));
                 location.reload();
             }
-        }
-        load();
+        };
+
+        window.resetForm = () => location.reload();
+
+        loadData();
     </script>
 </body>
 </html>
