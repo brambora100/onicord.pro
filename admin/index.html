@@ -13,7 +13,7 @@
             --accent: #5865f2;
             --danger: #ed4245;
             --warning: #fee75c;
-            --success: #3ba55c;
+            --creative: #2ed573;
             --text: #ffffff;
             --text-muted: #949ba4;
         }
@@ -37,9 +37,8 @@
         .btn-save:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4); }
 
         /* Main Area */
-        .main { flex-grow: 1; display: flex; flex-direction: column; padding: 30px; overflow: hidden; }
+        .main { flex-grow: 1; padding: 30px; display: flex; flex-direction: column; overflow: hidden; }
         
-        /* Horní lišta s filtrem */
         .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 20px; }
         .search-wrapper { flex-grow: 1; position: relative; }
         .search-input { width: 100%; background: var(--side); border: 1px solid #2f374a; padding: 15px 20px; border-radius: 15px; color: white; font-size: 1rem; }
@@ -49,7 +48,6 @@
         .stat-box span { font-size: 0.7rem; color: var(--text-muted); display: block; }
         .stat-box strong { font-size: 1.2rem; }
 
-        /* Tabulka a karty */
         .content-scroll { overflow-y: auto; flex-grow: 1; padding-right: 10px; }
         .ban-table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
         .ban-table th { text-align: left; padding: 0 20px; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
@@ -60,18 +58,21 @@
         .ban-row td:first-child { border-left: 1px solid #2f374a; border-radius: 15px 0 0 15px; }
         .ban-row td:last-child { border-right: 1px solid #2f374a; border-radius: 0 15px 15px 0; }
 
-        /* Badge styly */
-        .badge { padding: 5px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; }
+        .badge { padding: 5px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
         .type-BAN { background: rgba(237, 66, 69, 0.1); color: var(--danger); border: 1px solid var(--danger); }
         .type-WARN { background: rgba(254, 231, 92, 0.1); color: var(--warning); border: 1px solid var(--warning); }
         .type-MUTE { background: rgba(88, 101, 242, 0.1); color: var(--accent); border: 1px solid var(--accent); }
+        .type-CREATIVE { background: rgba(46, 213, 115, 0.1); color: var(--creative); border: 1px solid var(--creative); }
 
         .clip-link { color: #5865f2; text-decoration: none; font-size: 0.8rem; display: block; }
         .action-btns { display: flex; gap: 10px; }
         .btn-icon { background: none; border: 1px solid #2f374a; color: white; padding: 8px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
         .btn-icon:hover { background: #2f374a; }
 
-        #cancelEdit { display: none; background: #2f374a; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; }
+        .exact-date { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+        .remaining-time { font-weight: 600; color: #ff4757; }
+
+        #cancelEdit { display: none; background: #2f374a; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -89,7 +90,8 @@
         <div class="form-group">
             <label>Typ akce</label>
             <select id="pType">
-                <option value="BAN">BAN</option>
+                <option value="BAN">BAN (CELÝ SERVER)</option>
+                <option value="CREATIVE">BAN NA KREATIV</option>
                 <option value="MUTE">MUTE</option>
                 <option value="WARN">NAPOMENUTÍ (WARN)</option>
                 <option value="JAIL">JAIL</option>
@@ -98,7 +100,7 @@
 
         <div class="form-group">
             <label>Důvod</label>
-            <input type="text" id="pReason" placeholder="Killaura, vulgarita...">
+            <input type="text" id="pReason" placeholder="Killaura, griefing...">
         </div>
 
         <div class="form-group">
@@ -107,7 +109,7 @@
         </div>
 
         <div class="form-group">
-            <label>Důkazy (Medal links - každý na nový řádek)</label>
+            <label>Důkazy (Každý na nový řádek)</label>
             <textarea id="pClips" rows="3" placeholder="https://medal.tv/..."></textarea>
         </div>
 
@@ -123,10 +125,10 @@
     <main class="main">
         <div class="header-actions">
             <div class="search-wrapper">
-                <input type="text" id="searchBar" class="search-input" placeholder="🔍 Hledat hráče (např. napiš 'Zyloxx')...">
+                <input type="text" id="searchBar" class="search-input" placeholder="🔍 Hledat hráče nebo typ trestu...">
             </div>
             <div class="stats-mini">
-                <div class="stat-box"><span>Celkem záznamů</span><strong id="statTotal">0</strong></div>
+                <div class="stat-box"><span>Záznamy</span><strong id="statTotal">0</strong></div>
                 <div class="stat-box"><span>Aktivní</span><strong id="statActive">0</strong></div>
             </div>
         </div>
@@ -139,12 +141,11 @@
                         <th>Typ</th>
                         <th>Důvod & Poznámka</th>
                         <th>Důkazy</th>
-                        <th>Status / Vyprší</th>
+                        <th>Status / Přesný Konec</th>
                         <th>Akce</th>
                     </tr>
                 </thead>
-                <tbody id="dataTable">
-                    </tbody>
+                <tbody id="dataTable"></tbody>
             </table>
         </div>
     </main>
@@ -169,12 +170,10 @@
 
         let allRecords = [];
 
-        // Filtrování v reálném čase
         document.getElementById('searchBar').addEventListener('input', (e) => {
             renderTable(e.target.value.toLowerCase());
         });
 
-        // Uložení / Update
         document.getElementById('mainBtn').onclick = async () => {
             const id = document.getElementById('editId').value;
             const data = {
@@ -209,24 +208,48 @@
             const now = Date.now();
             let activeCount = 0;
 
-            const filtered = allRecords.filter(r => r.player.toLowerCase().includes(filter));
+            const filtered = allRecords.filter(r => 
+                r.player.toLowerCase().includes(filter) || 
+                r.type.toLowerCase().includes(filter)
+            );
 
             filtered.forEach(r => {
                 const isExpired = r.expires !== 0 && now > r.expires;
+                const isPerm = r.expires === 0;
                 if(!isExpired) activeCount++;
 
-                const timeInfo = r.expires === 0 ? "Permanentní" : (isExpired ? "Vypršelo" : Math.ceil((r.expires-now)/86400000) + " d");
+                let timeInfo = "";
+                let exactDate = "";
+
+                if (isPerm) {
+                    timeInfo = '<span class="remaining-time" style="color:var(--accent)">Permanentní</span>';
+                } else if (isExpired) {
+                    timeInfo = '<span style="color:gray">Vypršelo</span>';
+                } else {
+                    const diff = r.expires - now;
+                    const d = Math.floor(diff / 86400000);
+                    const h = Math.floor((diff % 86400000) / 3600000);
+                    const m = Math.floor((diff % 3600000) / 60000);
+                    
+                    timeInfo = `<span class="remaining-time">${d}d ${h}h ${m}m</span>`;
+                    
+                    const dateEnd = new Date(r.expires);
+                    exactDate = `<span class="exact-date">Končí: ${dateEnd.toLocaleDateString('cs-CZ')} v ${dateEnd.toLocaleTimeString('cs-CZ', {hour: '2-digit', minute:'2-digit'})}</span>`;
+                }
 
                 tbody.innerHTML += `
                     <tr class="ban-row">
                         <td><strong>${r.player}</strong></td>
-                        <td><span class="badge type-${r.type}">${r.type}</span></td>
+                        <td><span class="badge type-${r.type}">${r.type === 'CREATIVE' ? 'Ban Kreativ' : r.type}</span></td>
                         <td>
                             <div>${r.reason}</div>
                             <small style="color:var(--text-muted)">${r.note || ''}</small>
                         </td>
-                        <td>${r.clips.map((c, i) => `<a href="${c}" target="_blank" class="clip-link">Odkaz #${i+1}</a>`).join('')}</td>
-                        <td><span style="color:${isExpired ? 'gray' : 'inherit'}">${timeInfo}</span></td>
+                        <td>${r.clips.map((c, i) => `<a href="${c}" target="_blank" class="clip-link">Link #${i+1}</a>`).join('')}</td>
+                        <td>
+                            ${timeInfo}
+                            ${exactDate}
+                        </td>
                         <td>
                             <div class="action-btns">
                                 <button class="btn-icon" onclick="editMode('${r.id}')">✏️</button>
@@ -250,7 +273,6 @@
             document.getElementById('pDays').value = r.days;
             document.getElementById('pClips').value = r.clips.join('\n');
             document.getElementById('pNote').value = r.note;
-            
             document.getElementById('mainBtn').innerText = "AKTUALIZOVAT";
             document.getElementById('cancelEdit').style.display = "block";
         };
@@ -263,7 +285,6 @@
         };
 
         window.resetForm = () => location.reload();
-
         loadData();
     </script>
 </body>
