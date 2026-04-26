@@ -21,9 +21,8 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar - Formulář */
         .sidebar { width: 360px; background: var(--side); padding: 30px; border-right: 1px solid #232937; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; }
         
         .form-group { display: flex; flex-direction: column; gap: 5px; }
         label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
@@ -31,62 +30,55 @@
             background: #232937; border: 1px solid #2f374a; border-radius: 10px; padding: 12px; 
             color: white; font-family: inherit; transition: 0.2s;
         }
-        input:focus { border-color: var(--accent); outline: none; }
 
-        .btn-save { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-save { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: 0.3s; text-transform: uppercase; }
         .btn-save:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4); }
 
-        /* Main Area */
         .main { flex-grow: 1; padding: 30px; display: flex; flex-direction: column; overflow: hidden; }
         
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 25px; background: var(--side); padding: 8px; border-radius: 15px; border: 1px solid #2f374a; }
+        .tab-btn { flex: 1; background: transparent; border: none; color: var(--text-muted); padding: 10px; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.2s; text-transform: uppercase; font-size: 0.75rem; }
+        .tab-btn.active { background: var(--accent); color: white; }
+
         .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 20px; }
         .search-wrapper { flex-grow: 1; position: relative; }
         .search-input { width: 100%; background: var(--side); border: 1px solid #2f374a; padding: 15px 20px; border-radius: 15px; color: white; font-size: 1rem; }
-
-        .stats-mini { display: flex; gap: 15px; }
-        .stat-box { background: var(--side); padding: 10px 20px; border-radius: 12px; border-bottom: 2px solid var(--accent); }
-        .stat-box span { font-size: 0.7rem; color: var(--text-muted); display: block; }
-        .stat-box strong { font-size: 1.2rem; }
 
         .content-scroll { overflow-y: auto; flex-grow: 1; padding-right: 10px; }
         .ban-table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
         .ban-table th { text-align: left; padding: 0 20px; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
         
         .ban-row { background: var(--card); transition: 0.2s; }
-        .ban-row:hover { background: #252c39; transform: scale(1.005); }
         .ban-row td { padding: 20px; border-top: 1px solid #2f374a; border-bottom: 1px solid #2f374a; }
         .ban-row td:first-child { border-left: 1px solid #2f374a; border-radius: 15px 0 0 15px; }
-        .ban-row td:last-child { border-right: 1px solid #2f374a; border-radius: 0 15px 15px 0; }
+        .ban-row td:last-child { border-right: 1px solid #2f374a; border-radius: 0 15px 15px 15px; }
 
         .badge { padding: 5px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
         .type-BAN { background: rgba(237, 66, 69, 0.1); color: var(--danger); border: 1px solid var(--danger); }
-        .type-WARN { background: rgba(254, 231, 92, 0.1); color: var(--warning); border: 1px solid var(--warning); }
         .type-MUTE { background: rgba(88, 101, 242, 0.1); color: var(--accent); border: 1px solid var(--accent); }
-        .type-CREATIVE { background: rgba(46, 213, 115, 0.1); color: var(--creative); border: 1px solid var(--creative); }
 
-        .clip-link { color: #5865f2; text-decoration: none; font-size: 0.8rem; display: block; }
-        .action-btns { display: flex; gap: 10px; }
-        .btn-icon { background: none; border: 1px solid #2f374a; color: white; padding: 8px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-        .btn-icon:hover { background: #2f374a; }
+        .remaining-time { font-weight: 600; color: #ff4757; display: block; }
+        .warning-blink { animation: blink 1s infinite; color: #ff4757; font-weight: 800; border: 1px solid #ff4757; padding: 2px 5px; border-radius: 4px; }
+        @keyframes blink { 50% { opacity: 0.3; } }
 
-        .exact-date { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
-        .remaining-time { font-weight: 600; color: #ff4757; }
+        .status-select { background: #232937; border: 1px solid #2f374a; color: white; padding: 5px; border-radius: 5px; font-size: 0.8rem; }
+        .clip-link { color: #5865f2; text-decoration: none; font-size: 0.8rem; display: block; margin-bottom: 2px; }
+        .btn-icon { background: none; border: 1px solid #2f374a; color: white; padding: 8px; border-radius: 8px; cursor: pointer; margin-left: 5px; }
 
-        #cancelEdit { display: none; background: #2f374a; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; margin-top: 5px; }
+        .detail-row { display: none; background: #141820; }
+        .detail-row.active { display: table-row; }
+        .detail-content { padding: 20px; border: 1px dashed #2f374a; }
+
+        .section { display: none; }
+        .section.active { display: block; }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
         <div class="logo">🛡️ ONICORD</div>
-        
         <input type="hidden" id="editId">
-        
-        <div class="form-group">
-            <label>Jméno hráče</label>
-            <input type="text" id="pName" placeholder="Např. ZyloxxCZ">
-        </div>
-
+        <div class="form-group"><label>Jméno hráče</label><input type="text" id="pName" placeholder="ZyloxxCZ"></div>
         <div class="form-group">
             <label>Typ akce</label>
             <select id="pType">
@@ -94,59 +86,41 @@
                 <option value="CREATIVE">ZÁKAZ CREATIVE</option>
                 <option value="MUTE">MUTE</option>
                 <option value="WARN">NAPOMENUTÍ</option>
-                <option value="JAIL">JAIL</option>
             </select>
         </div>
-
-        <div class="form-group">
-            <label>Důvod</label>
-            <input type="text" id="pReason" placeholder="Killaura, griefing...">
-        </div>
-
-        <div class="form-group">
-            <label>Délka (Dny) | 0 = Perm</label>
-            <input type="number" id="pDays" value="0">
-        </div>
-
-        <div class="form-group">
-            <label>Důkazy (Každý na nový řádek)</label>
-            <textarea id="pClips" rows="3" placeholder="https://medal.tv/..."></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Interní poznámka</label>
-            <textarea id="pNote" rows="2" placeholder="Admin poznámka..."></textarea>
-        </div>
-
+        <div class="form-group"><label>Důvod</label><input type="text" id="pReason"></div>
+        <div class="form-group"><label>Délka (Dny) | 0 = Perm</label><input type="number" id="pDays" value="0"></div>
+        <div class="form-group"><label>Důkazy (jeden na řádek)</label><textarea id="pClips" rows="3"></textarea></div>
+        <div class="form-group"><label>Interní poznámka</label><textarea id="pNote" rows="2"></textarea></div>
         <button class="btn-save" id="mainBtn">ULOŽIT ZÁZNAM</button>
-        <button id="cancelEdit" onclick="resetForm()">ZRUŠIT ÚPRAVU</button>
+        <button id="cancelEdit" style="display:none; background:#2f374a; color:white; border:none; padding:10px; border-radius:10px; margin-top:5px; cursor:pointer;" onclick="location.reload()">ZRUŠIT ÚPRAVU</button>
     </aside>
 
     <main class="main">
-        <div class="header-actions">
-            <div class="search-wrapper">
-                <input type="text" id="searchBar" class="search-input" placeholder="🔍 Hledat hráče nebo typ trestu...">
+        <div class="tabs-nav">
+            <button class="tab-btn active" id="tab-tresty" onclick="switchTab('tresty')">Tresty</button>
+            <button class="tab-btn" id="tab-prihlasky" onclick="switchTab('prihlasky')">Přihlášky</button>
+        </div>
+
+        <div id="section-tresty" class="section active">
+            <div class="header-actions">
+                <div class="search-wrapper"><input type="text" id="searchBar" class="search-input" placeholder="🔍 Hledat hráče nebo důvod..."></div>
             </div>
-            <div class="stats-mini">
-                <div class="stat-box"><span>Záznamy</span><strong id="statTotal">0</strong></div>
-                <div class="stat-box"><span>Aktivní</span><strong id="statActive">0</strong></div>
+            <div class="content-scroll">
+                <table class="ban-table">
+                    <thead><tr><th>Hráč</th><th>Typ</th><th>Důvod & Důkazy</th><th>Odpočet / Status</th><th>Akce</th></tr></thead>
+                    <tbody id="dataTable"></tbody>
+                </table>
             </div>
         </div>
 
-        <div class="content-scroll">
-            <table class="ban-table">
-                <thead>
-                    <tr>
-                        <th>Hráč</th>
-                        <th>Typ</th>
-                        <th>Důvod & Poznámka</th>
-                        <th>Důkazy</th>
-                        <th>Status / Přesný Konec</th>
-                        <th>Akce</th>
-                    </tr>
-                </thead>
-                <tbody id="dataTable"></tbody>
-            </table>
+        <div id="section-prihlasky" class="section">
+            <div class="content-scroll">
+                <table class="ban-table">
+                    <thead><tr><th>Hráč (Q2)</th><th>Discord (Q3)</th><th>Datum</th><th>Stav</th><th>Akce</th></tr></thead>
+                    <tbody id="appTable"></tbody>
+                </table>
+            </div>
         </div>
     </main>
 
@@ -166,126 +140,128 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const colRef = collection(db, "bans");
+        let allBans = [];
 
-        let allRecords = [];
+        window.switchTab = (t) => {
+            document.querySelectorAll('.tab-btn, .section').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-'+t).classList.add('active');
+            document.getElementById('section-'+t).classList.add('active');
+            t === 'prihlasky' ? loadApps() : loadBans();
+        };
 
-        document.getElementById('searchBar').addEventListener('input', (e) => {
-            renderTable(e.target.value.toLowerCase());
-        });
+        function getCountdown(expires) {
+            if (expires === 0) return '<span style="color:var(--accent)">Permanentní</span>';
+            const diff = expires - Date.now();
+            if (diff <= 0) return '<span style="color:gray">Vypršelo</span>';
+            
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            
+            // Pokud zbývá méně než 24 hodin, zapne se varovné blikání
+            const isClosing = diff < 86400000; 
+            const style = isClosing ? 'class="warning-blink"' : 'class="remaining-time"';
+            const alertTag = isClosing ? '<div style="font-size:0.6rem; margin-bottom:2px">BRZY KONČÍ!</div>' : '';
+
+            return `${alertTag}<span ${style}>${d}d ${h}h ${m}m</span>`;
+        }
+
+        async function loadBans() {
+            const snap = await getDocs(query(collection(db, "bans"), orderBy("created", "desc")));
+            const tbody = document.getElementById('dataTable');
+            allBans = [];
+            tbody.innerHTML = "";
+            snap.forEach(d => {
+                const r = {id: d.id, ...d.data()};
+                allBans.push(r);
+                const clipsHtml = (r.clips || []).map(c => `<a href="${c}" target="_blank" class="clip-link">Důkaz 🔗</a>`).join('');
+                
+                tbody.innerHTML += `<tr class="ban-row">
+                    <td><strong>${r.player}</strong></td>
+                    <td><span class="badge type-${r.type}">${r.type}</span></td>
+                    <td><div>${r.reason}</div>${clipsHtml}</td>
+                    <td id="timer-${r.id}">${getCountdown(r.expires)}</td>
+                    <td>
+                        <button class="btn-icon" onclick="editMode('${r.id}')">✏️</button>
+                        <button class="btn-icon" onclick="deleteRec('bans','${r.id}')">🗑️</button>
+                    </td>
+                </tr>`;
+            });
+        }
+
+        // Automatické osvěžování odpočtů každou minutu
+        setInterval(() => {
+            allBans.forEach(r => {
+                const el = document.getElementById(`timer-${r.id}`);
+                if(el) el.innerHTML = getCountdown(r.expires);
+            });
+        }, 60000);
+
+        async function loadApps() {
+            const snap = await getDocs(collection(db, "prihlasky"));
+            const tbody = document.getElementById('appTable');
+            tbody.innerHTML = "";
+            snap.forEach(d => {
+                const r = d.data();
+                const rowId = `detail-${d.id}`;
+                const date = r.odeslano?.toDate ? r.odeslano.toDate().toLocaleDateString('cs-CZ') : '-';
+                let qHtml = "";
+                for(let i=1; i<=20; i++) if(r[`q${i}`]) qHtml += `<p style="font-size:0.85rem"><strong>Q${i}:</strong> ${r[`q${i}`]}</p>`;
+
+                tbody.innerHTML += `
+                    <tr class="ban-row" onclick="toggleDetail('${rowId}')" style="cursor:pointer">
+                        <td><strong>${r.q2 || 'Neznámé'}</strong></td>
+                        <td>${r.q3 || '-'}</td>
+                        <td>${date}</td>
+                        <td onclick="event.stopPropagation()">
+                            <select class="status-select" onchange="updateStatus('${d.id}', this.value)">
+                                <option value="Nový" ${r.status==='Nový'?'selected':''}>Nový</option>
+                                <option value="Řeší se" ${r.status==='Řeší se'?'selected':''}>Řeší se</option>
+                                <option value="Přijat" ${r.status==='Přijat'?'selected':''}>Přijat</option>
+                                <option value="Zamítnut" ${r.status==='Zamítnut'?'selected':''}>Zamítnut</option>
+                            </select>
+                        </td>
+                        <td><button class="btn-icon" onclick="event.stopPropagation(); deleteRec('prihlasky','${d.id}')">🗑️</button></td>
+                    </tr>
+                    <tr class="detail-row" id="${rowId}"><td colspan="5"><div class="detail-content">${qHtml}</div></td></tr>`;
+            });
+        }
+
+        window.updateStatus = async (id, s) => await updateDoc(doc(db, "prihlasky", id), {status: s});
+        window.toggleDetail = (id) => document.getElementById(id).classList.toggle('active');
+        window.deleteRec = async (c, id) => { if(confirm("Smazat?")) { await deleteDoc(doc(db, c, id)); loadBans(); loadApps(); }};
 
         document.getElementById('mainBtn').onclick = async () => {
             const id = document.getElementById('editId').value;
+            const days = parseInt(document.getElementById('pDays').value);
             const data = {
                 player: document.getElementById('pName').value,
                 type: document.getElementById('pType').value,
                 reason: document.getElementById('pReason').value,
-                days: parseInt(document.getElementById('pDays').value),
+                days: days,
                 clips: document.getElementById('pClips').value.split('\n').filter(l => l.trim() !== ""),
                 note: document.getElementById('pNote').value,
-                created: Date.now()
+                created: Date.now(),
+                expires: days === 0 ? 0 : Date.now() + (days * 86400000)
             };
-            data.expires = data.days === 0 ? 0 : Date.now() + (data.days * 86400000);
-
-            if(!data.player || !data.reason) return alert("Vyplň jméno a důvod!");
-
-            if(id) await updateDoc(doc(db, "bans", id), data);
-            else await addDoc(colRef, data);
-            
+            id ? await updateDoc(doc(db, "bans", id), data) : await addDoc(collection(db, "bans"), data);
             location.reload();
         };
 
-        async function loadData() {
-            const snap = await getDocs(query(colRef, orderBy("created", "desc")));
-            allRecords = [];
-            snap.forEach(d => allRecords.push({id: d.id, ...d.data()}));
-            renderTable();
-        }
-
-        function renderTable(filter = "") {
-            const tbody = document.getElementById('dataTable');
-            tbody.innerHTML = "";
-            const now = Date.now();
-            let activeCount = 0;
-
-            const filtered = allRecords.filter(r => 
-                r.player.toLowerCase().includes(filter) || 
-                r.type.toLowerCase().includes(filter)
-            );
-
-            filtered.forEach(r => {
-                const isExpired = r.expires !== 0 && now > r.expires;
-                const isPerm = r.expires === 0;
-                if(!isExpired) activeCount++;
-
-                let timeInfo = "";
-                let exactDate = "";
-
-                if (isPerm) {
-                    timeInfo = '<span class="remaining-time" style="color:var(--accent)">Permanentní</span>';
-                } else if (isExpired) {
-                    timeInfo = '<span style="color:gray">Vypršelo</span>';
-                } else {
-                    const diff = r.expires - now;
-                    const d = Math.floor(diff / 86400000);
-                    const h = Math.floor((diff % 86400000) / 3600000);
-                    const m = Math.floor((diff % 3600000) / 60000);
-                    
-                    timeInfo = `<span class="remaining-time">${d}d ${h}h ${m}m</span>`;
-                    
-                    const dateEnd = new Date(r.expires);
-                    exactDate = `<span class="exact-date">Končí: ${dateEnd.toLocaleDateString('cs-CZ')} v ${dateEnd.toLocaleTimeString('cs-CZ', {hour: '2-digit', minute:'2-digit'})}</span>`;
-                }
-
-                tbody.innerHTML += `
-                    <tr class="ban-row">
-                        <td><strong>${r.player}</strong></td>
-                        <td><span class="badge type-${r.type}">${r.type === 'CREATIVE' ? 'Ban Kreativ' : r.type}</span></td>
-                        <td>
-                            <div>${r.reason}</div>
-                            <small style="color:var(--text-muted)">${r.note || ''}</small>
-                        </td>
-                        <td>${r.clips.map((c, i) => `<a href="${c}" target="_blank" class="clip-link">Link #${i+1}</a>`).join('')}</td>
-                        <td>
-                            ${timeInfo}
-                            ${exactDate}
-                        </td>
-                        <td>
-                            <div class="action-btns">
-                                <button class="btn-icon" onclick="editMode('${r.id}')">✏️</button>
-                                <button class="btn-icon" onclick="deleteRec('${r.id}')">🗑️</button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            });
-
-            document.getElementById('statTotal').innerText = allRecords.length;
-            document.getElementById('statActive').innerText = activeCount;
-        }
-
         window.editMode = (id) => {
-            const r = allRecords.find(x => x.id === id);
+            const r = allBans.find(x => x.id === id);
             document.getElementById('editId').value = id;
             document.getElementById('pName').value = r.player;
             document.getElementById('pType').value = r.type;
             document.getElementById('pReason').value = r.reason;
             document.getElementById('pDays').value = r.days;
-            document.getElementById('pClips').value = r.clips.join('\n');
-            document.getElementById('pNote').value = r.note;
+            document.getElementById('pClips').value = (r.clips || []).join('\n');
+            document.getElementById('pNote').value = r.note || "";
             document.getElementById('mainBtn').innerText = "AKTUALIZOVAT";
             document.getElementById('cancelEdit').style.display = "block";
         };
 
-        window.deleteRec = async (id) => {
-            if(confirm("Opravdu smazat?")) {
-                await deleteDoc(doc(db, "bans", id));
-                location.reload();
-            }
-        };
-
-        window.resetForm = () => location.reload();
-        loadData();
+        loadBans();
     </script>
 </body>
 </html>
